@@ -1,31 +1,31 @@
-# Foobar
+# Lab 1 (Comunicación entre sockets)
 
-Foobar is a Python library for dealing with word pluralization.
+En el siguiente laboratorio se creó una comunicación de bajo nivel con Sockets en python que da solución a una calculadora que se comunica desde un cliente a un servidor por medio de instancias de EC2 brindadas por AWS.
 
-## Installation
+## Uso
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Usarempos 
+[python3](https://www.python.org/downloads/).
+[AWS](https://www.awseducate.com/signin/SiteLogin?ec=302&startURL=%2Fstudent%2Fs%2Fclassrooms) En este caso, educate.
+ 
+## Ejecución
+procedemos a clonar el repositorio (preferiblemente dentro de la(s) instancia(s) que usaremos
 
-```bash
-pip install foobar
+```
+git clone https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos
+cd ST0246-TopicosTelematica-CristianCeballos/
 ```
 
-## Usage
+Una vez conectados con ssh desde la instancia de aws
 
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+```
+python3 echo_server.py
+python3 echo_client.py
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Y procedemos a hacer el proceso de operaciones
 
-Please make sure to update tests as appropriate
+
+```
+Podemos ejecutar cualquier tipo de operación
+```
