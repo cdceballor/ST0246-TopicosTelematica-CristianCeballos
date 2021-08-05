@@ -29,3 +29,8 @@ Y procedemos a hacer el proceso de operaciones
 ```
 Podemos ejecutar cualquier tipo de operación
 ```
+
+## Creado por
+Cristian Darío Ceballos Rodríguez
+cdceballor@eafit.edu.co
+Tópicos especiales en telemática
