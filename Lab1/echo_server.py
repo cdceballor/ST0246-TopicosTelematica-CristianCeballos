@@ -1,8 +1,3 @@
-# Server.py file
-# @author Adam Slattum
-# @version 04/26/16
-# References: https://docs.python.org/2/library/exceptions.html
-
 import socket	# Import socket module
 import sys
 from _thread import *
