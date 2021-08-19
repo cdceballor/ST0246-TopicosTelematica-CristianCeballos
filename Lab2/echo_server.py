@@ -5,11 +5,6 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 s = socket.socket() # Create a socket object
 
-#host = socket.gethostname()   # Get local machine name
-#port = 65432#int(sys.argv[1])
-#s.bind(("localhost", 8080))  # Bind to the port
-#s.listen(5)  # Now wait for client connection.
-
 print("Server is up and running")
 
 class HandlerConection(BaseHTTPRequestHandler):
@@ -19,9 +14,7 @@ class HandlerConection(BaseHTTPRequestHandler):
           self.end_headers()
 
      def do_GET(self):
-          #print("GET request,\nPath: {} \nHeaders: {} \n".format(self.path, self.headers))
           c, addr = s.accept()
-          #options = str(self.path).split
           connection(c)
           self._set_response()
           self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
@@ -29,16 +22,28 @@ class HandlerConection(BaseHTTPRequestHandler):
      def do_POST(self):
           content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
           post_data = self.rfile.read(content_length) # <--- Gets the data itself
-          print("POST request,\nPath: {}\nHeaders:{}\nBody:\n%s\n",
-          str(self.path), str(self.headers), post_data.decode('utf-8'))
+          print(post_data.decode('utf-8'))
+          post_data = str(post_data.decode('utf-8')).strip()
+          print(post_data)
+          if(len(post_data.split('+')) > 1):
+            result= int(post_data.split('+')[0]) + int(post_data.split('+')[1])
 
+          if(len(post_data.split('-')) > 1):
+            result=int(post_data.split('-')[0]) - int(post_data.split('-')[1])
+
+          if(len(post_data.split('*')) > 1):
+            result=int(post_data.split('*')[0]) * int(post_data.split('*')[1])
+
+          if(len(post_data.split('/')) > 1):
+            result=int(post_data.split('/')[0]) / int(post_data.split('/')[1])
+
+          print(result)
           self._set_response()
           self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
 
 def connection(c):
           while True:
                try:
-                    #equation = c.get('localhost:8080')
                     equation=c.recv(1024).decode()
                     print(equation)
                     if equation == "Q" or equation == "q" or equation == "Quit" or equation == "quit" or equation == "quit()":
@@ -59,13 +64,12 @@ def connection(c):
           c.close() 			# Close the connection.
 
 try:
-     server = HTTPServer(('localhost', 8080), HandlerConection)
+     # Puerto : 8008
+     # IP : privada intancia que va a ser el server - 172.31.2.156
+     #server = HTTPServer(('localhost', 8080), HandlerConection)
+     server = HTTPServer(('172.31.2.156', 8080), HandlerConection)
      print("Starting server, use <Ctrl-C> to stop")
      server.serve_forever()
 except Exception as error:
      print("Server error")
      print(error)
-# while True:
-#      c, addr = s.accept() # Establish connection with client.
-#      print('Got connection from', addr)
-#      start_new_thread(connection, (c, ))

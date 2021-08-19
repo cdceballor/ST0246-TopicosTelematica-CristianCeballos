@@ -7,16 +7,13 @@ import http.client
 s = socket.socket() 	  		 # Create a socket object
 
 try:
-    #54.236.45.39
-    # host = socket.gethostname()  # Reading IP Address
-    # port = 65432 # Reading port number
-    # s.connect(("localhost", 8080))  # Connecting to server
-    # print("The IP address of the server is:", host)
-    # print("The port number of the server is:", port)
 
     while(True):
-        equ=input("Please give me your equation (Ex: 2+2) or Q to quit: ")
-        s = requests.post("http://localhost:8080", equ)
+        equ=input("Please give me your equation (Ex: 2+2) or Q to quit:")
+        # Puerto : 8008
+        # IP : publica intancia que va a ser el server - 44.197.229.178
+        #s = requests.post("http://localhost:8080", equ)
+        s = requests.post("44.197.229.178:8080", equ)
         print(s)
         #s.send(equ.encode())
         #result = s.recv(1024).decode()
@@ -34,7 +31,7 @@ try:
             print("You did not enter an equation, try again")
         else:
             print("The answer is:", result)
-            
+
     if(result != ""):
         connection = http.client.HTTPConnection('localhost', 8080)
         connection.request("GET", '/' + result)
