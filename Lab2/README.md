@@ -1,6 +1,10 @@
 # Lab 2 (Comunicación entre cliente-servidor con http)
 
 Se creó una comunicación con http desde un cliente hacia un servidor donde se ejecuta una calculadora creada con python
+## Funcionamiento
+
+![image](https://user-images.githubusercontent.com/35697740/130005142-49c30e3c-e98c-4f37-bf3e-b3b7d6a6ae52.png)
+
 ## Uso
 
 Usarempos 
