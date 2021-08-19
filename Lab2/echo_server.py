@@ -1,7 +1,11 @@
 import socket	# Import socket module
 import sys
+import const
 from _thread import *
 from http.server import BaseHTTPRequestHandler, HTTPServer
+PRIVATEHOSTSERVER = const.SERVERADDRESS
+PUBLICHOSTCLIENT = const.CLIENTADDRESS
+PORT = const.PORT
 
 s = socket.socket() # Create a socket object
 
@@ -64,10 +68,8 @@ def connection(c):
           c.close() 			# Close the connection.
 
 try:
-     # Puerto : 8008
-     # IP : privada intancia que va a ser el server - 172.31.2.156
      #server = HTTPServer(('localhost', 8080), HandlerConection)
-     server = HTTPServer(('172.31.2.156', 8080), HandlerConection)
+     server = HTTPServer((PRIVATEHOSTSERVER, PORT), HandlerConection)
      print("Starting server, use <Ctrl-C> to stop")
      server.serve_forever()
 except Exception as error:

@@ -3,6 +3,12 @@ import sys
 import ipaddress
 import requests
 import http.client
+import const
+
+PRIVATEHOSTSERVER = const.SERVERADDRESS
+PUBLICHOSTCLIENT = const.CLIENTADDRESS
+PUBLICHOSTCLIENTWITHPORT = const.PUBLICHOSTCLIENTWITHPORT
+PORT = const.PORT
 
 s = socket.socket() 	  		 # Create a socket object
 
@@ -10,10 +16,8 @@ try:
 
     while(True):
         equ=input("Please give me your equation (Ex: 2+2) or Q to quit:")
-        # Puerto : 8008
-        # IP : publica intancia que va a ser el server - 44.197.229.178
         #s = requests.post("http://localhost:8080", equ)
-        s = requests.post("44.197.229.178:8080", equ)
+        s = requests.post(PUBLICHOSTCLIENTWITHPORT, equ)
         print(s)
         #s.send(equ.encode())
         #result = s.recv(1024).decode()
@@ -33,7 +37,7 @@ try:
             print("The answer is:", result)
 
     if(result != ""):
-        connection = http.client.HTTPConnection('localhost', 8080)
+        connection = http.client.HTTPConnection(PUBLICHOSTCLIENT, PORT)
         connection.request("GET", '/' + result)
         response = connection.getresponse()
         print("Status: {} and reason: {}".format(response.status, response.reason))
