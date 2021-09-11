@@ -4,7 +4,6 @@ portID = 5672
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(dirIP, portID, "/", pika.PlainCredentials("user","password")))
 channel = connection.channel()
-
 def callback(ch, method, properties, body):
         print(f'{body} is received')
 
