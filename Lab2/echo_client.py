@@ -17,7 +17,11 @@ try:
     while(True):
         equ=input("Please give me your equation (Ex: 2+2) or Q to quit:")
         #s = requests.post("http://localhost:8080", equ)
-        s = requests.post(PUBLICHOSTCLIENTWITHPORT, equ)
+        #s = requests.post(PUBLICHOSTCLIENTWITHPORT, equ)
+        s = requests.post("http://172.31.54.170:8080", equ)
+        #s= requests.post("http://100.25.196.132:8080", equ)   
+        #s = requests.post("http://44.197.229.178:8080", equ)
+        #s = requests.post("http://172.31.2.156:8080", equ)
         print(s)
         #s.send(equ.encode())
         #result = s.recv(1024).decode()
@@ -37,7 +41,12 @@ try:
             print("The answer is:", result)
 
     if(result != ""):
-        connection = http.client.HTTPConnection(PUBLICHOSTCLIENT, PORT)
+        #connection = http.client.HTTPConnection(PUBLICHOSTCLIENT, PORT)
+        #connection = http.client.HTTPConnection("http://172.31.54.170", PORT)
+        #connection = http.client.HTTPConnection("http://100.25.196.132", PORT)
+        #connection = http.client.HTTPConnection("http://44.197.229.178", PORT)
+        #connection = http.client.HTTPConnection("http://172.31.2.156", PORT)
+        connection = http.client.HTTPConnection("http://localhost", PORT)
         connection.request("GET", '/' + result)
         response = connection.getresponse()
         print("Status: {} and reason: {}".format(response.status, response.reason))
