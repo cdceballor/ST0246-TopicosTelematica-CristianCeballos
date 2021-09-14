@@ -1,6 +1,8 @@
 import pika
-dirIP = "54.152.119.37"
-portID = 5672
+import const 
+
+dirIP = const.dirIP
+portID = const.portID
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(dirIP, portID, "/", pika.PlainCredentials("user","password")))
 channel = connection.channel()
