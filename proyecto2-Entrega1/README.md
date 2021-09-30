@@ -13,7 +13,7 @@ Instancia de Wordpress
 ## Ejecución
 Crear la instancia de GCP y colocaremos 
 ```
-Seguir los siguientes [pasos](https://dev.to/gelopfalcon/crear-un-vm-linux-en-gcp-2e0d#:~:text=Crea%20una%20instancia%20de%20m%C3%A1quina%20virtual%201-%20En,el%20nombre%20que%20quieres%20que%20tu%20instancia%20tenga.)
+Seguir los siguientes pasos - > https://dev.to/gelopfalcon/crear-un-vm-linux-en-gcp-2e0d#:~:text=Crea%20una%20instancia%20de%20m%C3%A1quina%20virtual%201-%20En,el%20nombre%20que%20quieres%20que%20tu%20instancia%20tenga.
 ```
 
 Una vez conectados con ssh desde la instancia de GCP, procederemos a instalar todo lo necesario para trabajar
@@ -37,29 +37,29 @@ Desde el usuario de vm
 ```
     1  sudominio.com suipestatica
     2  www.sudominio.com suipestatica
-    8  sudo apt-get update -y
-    9  sudo apt-get upgrade -y && sudo shutdown -r now
-   11  sudo certbot --server https://acme-v02.api.letsencrypt.org/directory -d *.sudominio.com --manual --preferred-challenges dns-01 certonly
-   20  mkdir wordpress ssl
-   25  cd wordpress/
-   26  mkdir ssl
-   27  sudo su
-   29  sudo apt-get install docker -y
-   36  sudo apt-get remove apache2
-   37  sudo service nginx restart
-   38  sudo apt-get install docker
-   39  sudo apt update
-   41  sudo apt-get upgrade
-   45  sudo apt-get install git -y
-   50  sudo systemctl enable docker
-   53  sudo apt-get install docker -y
-   54  sudo apt-get update
-   62  sudo apt-get install docker.io
-   64  sudo systemctl enable docker
-   65  sudo systemctl start docker
-   66  sudo usermod -a -G docker suusuariodevm
-   67  sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-   68  sudo chmod +x /usr/local/bin/docker-compose
+    3  sudo apt-get update -y
+    4  sudo apt-get upgrade -y && sudo shutdown -r now
+    5  sudo certbot --server https://acme-v02.api.letsencrypt.org/directory -d *.sudominio.com --manual --preferred-challenges dns-01 certonly
+    6  mkdir wordpress ssl
+    7  cd wordpress/
+    8  mkdir ssl
+    9  sudo su
+   10  sudo apt-get install docker -y
+   11  sudo apt-get remove apache2
+   12  sudo service nginx restart
+   13  sudo apt-get install docker
+   14  sudo apt update
+   15  sudo apt-get upgrade
+   16  sudo apt-get install git -y
+   17  sudo systemctl enable docker
+   18  sudo apt-get install docker -y
+   19  sudo apt-get update
+   20  sudo apt-get install docker.io
+   21  sudo systemctl enable docker
+   22  sudo systemctl start docker
+   23  sudo usermod -a -G docker suusuariodevm
+   24  sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+   25  sudo chmod +x /usr/local/bin/docker-compose
 ```
 Ya tendremos la aplicación ejecutada y corriendo en docker
 
