@@ -21,7 +21,7 @@ Conceptos de seguridad previamente implementados por parte de GCP
 
 - Rendimiento: Se implementó según las características de la arquitectura un intermediario (CDN) que estará entre el browser y el balanceador de cargar (lb) cuya función es almacenar en caché los datos estáticos solicitados por el cliente, de tal forma que en las siguientes peticiones que haga el cliente para dichos archivos estáticos ya estén almacenados en caché y el CDN pueda retornarlos sin necesidad de hacer la petición hasta la capa de aplicación incrementando así el rendimiento de los tiempos de respuesta de la aplicación.
 
-- Seguridad: Se utilizó los servicios de Google Cloud Platform ya que estos nos garantizaba más seguridad en nuestro aplicativo, teniendo en cuenta: Los posibles ataques, caídas del sistema, extracción de información por parte de terceros, y demás métodos que alteraran ya fuesen el funcionamiento de la aplicación o los datos de los usuarios que la visitaban.
+- Seguridad: Se utilizó los servicios de Google Cloud Platform ya que estos nos garantizaba más seguridad en nuestro aplicativo, teniendo en cuenta: Los posibles ataques, caídas del sistema, extracción de información por parte de terceros, y demás métodos que alteraran ya fuesen el funcionamiento de la aplicación o los datos de los usuarios que la visitaban, IMPORTANTE: no se utilizó una tecnología o un servicio en específico para el concepto de seguridad ya que al usar servicios de Load Balanced y CDN de GCP, ya nos garantizaba seguridad: https://cloud.google.com/security/infrastructure/design .
 
 Es importante recalcar que estos dos últimos conceptos (Rendimiento y seguridad) fueron implementados con los servicos de GCP ya que nos garantizaban funcionamiento y estabilidad.
 
