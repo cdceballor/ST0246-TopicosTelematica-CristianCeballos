@@ -2,7 +2,7 @@
 
 En el siguiente proyecto, se crea una página con fuente de Wordpress y se despliega con Docker en una máquina virtual de google cloud platform, siguiente, procederemos a separar las capas en: una de aplicación, una de server y una de base de datos con unas características específicas que se ven reflejadas en la siguiente arquitectura.
 
-![Arquitectura base](arquitect.png)
+![arquitect](https://user-images.githubusercontent.com/35697740/137823925-cabbc0e8-b442-4ca7-9a67-d0eb754a036d.png)
 
 ## Uso
 
