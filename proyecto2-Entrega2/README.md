@@ -25,6 +25,11 @@ Conceptos de seguridad previamente implementados por parte de GCP
 
 Es importante recalcar que estos dos últimos conceptos (Rendimiento y seguridad) fueron implementados con los servicos de GCP ya que nos garantizaban funcionamiento y estabilidad.
 
+## Para visitar el sitio web: 
+
+Puede ingresar al link : http://34.120.91.230/ y revisar que el sitio se encuentra corriendo perfectamente.
+Puede ingresar al link : http://34.120.91.230/index.php/tienda/ y revisar, añadir y leer a cerca del proyecto que se encuentre disponible para agregar. 
+
 ## Creado por
 Sebastian Loaiza Correa
 sloaizac@eafit.edu.co
