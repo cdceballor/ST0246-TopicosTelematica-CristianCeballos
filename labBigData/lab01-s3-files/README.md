@@ -9,7 +9,9 @@ Primero que nada, debemos ingresar a nuestro master conectado a la instancia de 
 clonaremos dentro de la instancia el repositorio: https://github.com/st0263eafit/st0263_20212.git   y entraremos hasta la carpeta de datasets.
 Procederemos, desde nuestra instancia, a escribir el comando 
 
+```
 user@master$ hdfs dfs -mkdir /user/<username>/datasets
+```
 
 para poder crear una carpeta, ojo, cambiar el username por el nombre de usuario de tu preferencia.
 
@@ -24,7 +26,9 @@ Hadoop
 
 En el proceso de S3, funciona idénticamente igual, lo único que cambia es que ahora no será el comando con hdfs dfs -copyFromLocal sino que cambiará por hadoop distcp ya que copiaremos de hadoop hacia S3.
 
+```
 user@master$ hadoop distcp s3://(bucketName)/datasets/*
+```
 
 Y así tendremos resultado de los datos dentro de S3.
 
