@@ -1,41 +1,53 @@
-# Lab 01 - Manejo de archivos con hdfs y hadoop
+# Lab 03.1 - pyspark y primeros pasos con wordcount.txt
 
-En el siguiente laboratorio, copiaremos los archivos que dejamos iniciados en el anterior laboratorio (lab00), lo que haremos será copiar los archivos de un github a hadoop y luego a un bucket de S3.
+En el siguiente laboratorio, trabajaremos con Spark para contar el total de palabras que se encuentran en un archivo .txt ejecutando el código desde HDFS, S3 y Jupyter, y luego, almacenar esos resultados en paquetes.
 
 ## Cómo trabajaremos
-Primero que nada, debemos ingresar a nuestro master conectado a la instancia de Ec2, de esta forma, nos permitirá trabajar con todos los comandos necesarios para lograr el objetivo.
+Primero que nada, entraremos a nuestro EMR y a nuestra instancia master, donde podremos ejecutar el código para contar las palabras y luego almacenarlo tanto en HDFS y S3, el código lo podemos encontrar en: https://github.com/st0263eafit/st0263_20212/tree/main/bigdata/03-spark 
 
 ## Pasar datos del repositorio a hadoop
 clonaremos dentro de la instancia el repositorio: https://github.com/st0263eafit/st0263_20212.git   y entraremos hasta la carpeta de datasets.
 Procederemos, desde nuestra instancia, a escribir el comando 
 
+Ejecutaremos la primera instrucción:
 ```
-user@master$ hdfs dfs -mkdir /user/<username>/datasets
+$ pyspark
+>>> files_rdd = sc.textFile("hdfs:///datasets/gutenberg-small/*.txt")
+>>> files_rdd = sc.textFile("s3://st0263datasets/gutenberg-small/*.txt")
+>>> wc_unsort = files_rdd.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+>>> wc = wc_unsort.sortBy(lambda a: -a[1])
+>>> for tupla in wc.take(10):
+>>>     print(tupla)
+>>> wc.saveAsTextFile("hdfs:///tmp/wcout1")
+
+* asi salva wc un archivo por rdd.
+* si quiere que se consolide en un solo archivo de salida:
+
+$ pyspark
+>>> ...
+>>> ...
+>>> wc.coalesce(1).saveAsTextFile("hdfs:///tmp/wcout2")
 ```
+La salida será:
 
-para poder crear una carpeta, ojo, cambiar el username por el nombre de usuario de tu preferencia.
+![arquitect](https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos/blob/main/labBigData/lab0031-spark/save.jpg)
 
-Una vez creada la carpeta, usaremos el comando
-user@master$ hdfs dfs -copyFromLocal /datasets/* /user//datasets/
+O desde la terminal:
 
-para copiar los datos desde la carpeta datasets del repositorio clonado, hasta nuestra cuenta en hadoop previamente creada.
+![arquitect](https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos/blob/main/labBigData/lab0031-spark/terminal1.jpg)
 
-Al final, podremos ya tener los datos dentro de Hadoop.
-Hadoop
-![arquitect](https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos/blob/main/labBigData/lab01-s3-files/WhatsApp%20Image%202021-11-12%20at%2017.41.03.jpeg)
+Luego para confirmar existencia de los archivos:
 
-En el proceso de S3, funciona idénticamente igual, lo único que cambia es que ahora no será el comando con hdfs dfs -copyFromLocal sino que cambiará por hadoop distcp ya que copiaremos de hadoop hacia S3.
+![arquitect](https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos/blob/main/labBigData/lab0031-spark/save1.jpg)
 
-```
-user@master$ hadoop distcp s3://(bucketName)/datasets/*
-```
+Al usar el mismo código pero en un archivo de Jupyter tendremos:
 
-Y así tendremos resultado de los datos dentro de S3.
+![arquitect](https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos/blob/main/labBigData/lab0031-spark/save2.jpg)
 
-S3
-![arquitect](https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos/blob/main/labBigData/lab01-s3-files/WhatsApp%20Image%202021-11-12%20at%2017.40.44.jpeg)
 
-Para más detalles, consultar: https://github.com/st0263eafit/st0263_20212/tree/main/bigdata/01-hdfs
+Y luego, revisaremos la existencia de nuevo con:
+
+![arquitect](https://github.com/cdceballor/ST0246-TopicosTelematica-CristianCeballos/blob/main/labBigData/lab0031-spark/terminal2.jpg)
 ## Creado por
 Cristian Darío Ceballos Rodríguez
 cdceballor@eafit.edu.co
